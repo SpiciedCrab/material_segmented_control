@@ -44,6 +44,7 @@ class MaterialSegmentedControl<T> extends StatefulWidget {
       this.unselectedColor,
       this.selectedColor,
       this.borderColor,
+        this.verticalPadding = 12,
       this.borderRadius = 32.0})
       : assert(children != null),
         assert(children.length >= 2),
@@ -91,6 +92,8 @@ class MaterialSegmentedControl<T> extends StatefulWidget {
   /// [Colors.grey] by default if null.
   final Color borderColor;
 
+  final double verticalPadding;
+
   /// The border radius used on the left and right side.
   ///
   /// Defaults to 32.0 if null
@@ -118,8 +121,6 @@ class _SegmentedControlState<T> extends State<MaterialSegmentedControl<T>>
   Color _unselectedTextColor;
   Color _borderColor;
   Color _pressedColor;
-
-  final double _verticalOffset = 12.0;
 
   AnimationController createAnimationController() {
     return AnimationController(
@@ -293,7 +294,7 @@ class _SegmentedControlState<T> extends State<MaterialSegmentedControl<T>>
 
       Widget child = Center(
         child: Padding(
-            padding: EdgeInsets.symmetric(vertical: _verticalOffset),
+            padding: EdgeInsets.symmetric(vertical: widget.verticalPadding),
             child: widget.children[currentKey]),
       );
 
